@@ -1,5 +1,5 @@
-import example from '@/apis/examples'
+import verify from '@/apis/verify'
 
 export default () => ({
-  example
+  verify
 })

@@ -6,7 +6,7 @@ export default defineNuxtConfig({
       baseApiUrl: process.env.NUXT_APP_BASE_API_URL
     }
   },
-  ssr: false,
+  ssr: true,
   devtools: {
     enabled: true
   },
