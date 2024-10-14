@@ -45,7 +45,7 @@ const getUserProfile = async () => {
   }
 }
 
-const logout = async () => {
+const logout = () => {
   localStorage.removeItem('token')
   navigateTo('/verification')
 }
