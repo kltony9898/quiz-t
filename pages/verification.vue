@@ -19,16 +19,18 @@ const isLoading = ref(false)
 const submitOtp = async () => {
   const code = verificationCode.value.join('')
   console.log(code)
-  // verificationCode.value
-  // const res = await useApi().verify.otpVerify(({ code }))
+
   try {
-    isLoading.value = true
-    await $fetch('/api/verify', {
-      method: 'POST',
-      body: { code }
+    // isLoading.value = true
+    const { data } = await useApi().verify.otpVerify({
+      code
     })
+    const token = data.token as string
+    localStorage.setItem('token', token)
+    navigateTo('/profile')
   } catch (e) {
     alert('驗證碼輸入錯誤')
+    navigateTo('/verification', { external: true })
   } finally {
     isLoading.value = false
   }

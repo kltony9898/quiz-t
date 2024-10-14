@@ -1,20 +1,31 @@
+interface Response<T> {
+  success: boolean
+  data: T
+}
+
 type VerifyCode = {
   code: string
 }
 
-type Response = {
-  success: boolean
-  data: {
-    method: 'get' | 'post' | 'put' | 'delete'
-    body?: Record<string, unknown>
-    query?: Record<string, unknown>
-  }
+interface OtpVerifyData {
+  valid: boolean
+  token: string
 }
+type OtpVerifyResponse = Response<OtpVerifyData>
 
 const otpVerify = (data: VerifyCode) => useHttp().post('/api/verify', {
   body: data
-}) as Promise<Response>
+}) as Promise<OtpVerifyResponse>
+
+interface UserInfoData {
+  username: string
+  quote: string
+  photo: string
+}
+
+type UserInfoResponse = Response<UserInfoData>
+const getUserInfo = () => useHttp().get('/api/auth') as Promise<UserInfoResponse>
 
 export default {
-  otpVerify
+  otpVerify, getUserInfo
 }
