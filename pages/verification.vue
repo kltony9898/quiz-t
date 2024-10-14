@@ -18,10 +18,9 @@ const isLoading = ref(false)
 
 const submitOtp = async () => {
   const code = verificationCode.value.join('')
-  console.log(code)
 
   try {
-    // isLoading.value = true
+    isLoading.value = true
     const { data } = await useApi().verify.otpVerify({
       code
     })

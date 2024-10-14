@@ -31,9 +31,8 @@ interface UserInfo {
 
 const userInfo = ref<UserInfo>()
 
-onBeforeMount(async () => {
-  const res = await getUserProfile()
-  console.log(res)
+onBeforeMount(() => {
+  getUserProfile()
 })
 
 const getUserProfile = async () => {
@@ -43,8 +42,6 @@ const getUserProfile = async () => {
   } catch (e) {
     alert('請重新輸入驗證碼')
     navigateTo('/verification', { external: true })
-  } finally {
-    console.log('dd')
   }
 }
 
