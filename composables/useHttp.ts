@@ -6,13 +6,19 @@ const replaceUrlParams = (url: string, params: Record<string, unknown>) => url.r
 
 const fetch = (url: string, options?: NitroFetchOptions<Method>) => {
   const { public: { baseApiUrl } } = useRuntimeConfig()
-
+  const token = localStorage.getItem('token')
   const newURL = options?.params ? replaceUrlParams(url, options.params) : url
 
   const newOptions: NitroFetchOptions<Method> = {
     ...options,
     baseURL: baseApiUrl,
-    params: {}
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+    params: {},
+    onResponseError ({ response }) {
+      response.status === 401 && localStorage.removeItem('token')
+    }
   }
 
   return $fetch(newURL, newOptions)
