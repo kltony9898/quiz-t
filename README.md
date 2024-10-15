@@ -1,9 +1,19 @@
 # Quiz
-## Page Design
-1. Profile Page
-    ![profile.png](profile.png)
-2. Otp Page
-   ![otp.png](otp.png)
+
+## E2E Test Case(now auto sorry)
+
+- [] use playWrite maybe cool(todo)
+
+1. Enter correct code
+Enter verification code : 6666
+
+2. Enter wrong code
+Enter verification code : 4213
+
+3. Click Logout button
+
+4. Reload page
+
 
 ## Requirement
 1. if user not authenticated, should redirect to verification page
@@ -32,6 +42,8 @@
 ### Overview
 This document provides detailed specifications and usage guidelines for the `/api/verify` and `/api/auth` endpoints.
 
+
+Used the Nitro server to write mock APIs, which can be removed in the Nuxt config for production environments if needed.
 ---
 
 ### 1. Verification API - POST /api/verify
