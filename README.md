@@ -14,13 +14,6 @@ Enter verification code : 4213
 
 4. Reload page
 
-## Page Design
-
-1. Profile Page
-    ![profile.png](profile.png)
-
-2. Otp Page
-   ![otp.png](otp.png)
 
 ## Requirement
 1. if user not authenticated, should redirect to verification page
