@@ -98,13 +98,18 @@ const onDelete = (index: number): void => {
 const onPaste = useThrottleFn(async () => {
   const clipboardText = await navigator.clipboard.readText()
   if (clipboardText) {
-    const numericValue = clipboardText.replace(/[^0-9]/g, '').slice(0, modelValue.value.length)
+    // filter if paste text is illegal
+    const numericValue = clipboardText.replace(/[^0-9]/g, '').slice(
+      0, modelValue.value.length
+    )
+    // check paste text length
     const newValue = [...numericValue.padEnd(modelValue.value.length, '')]
     newValue.forEach((value, index) => { modelValue.value[index] = value })
     nextTick(() => {
       checkCompletion()
     })
 
+    // find the empty digit
     const lastNonEmptyIndex = newValue.findLastIndex(digit => digit !== '')
     if (lastNonEmptyIndex !== -1) {
       inputRefs[lastNonEmptyIndex]?.focus()
